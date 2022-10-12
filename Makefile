@@ -54,6 +54,9 @@ $(SRC_DIR)/$(OBJ_DIR)/%.o : $(STARTUP_DIR)/%.c | mk_obj_dir
 $(TARGET) : $(OBJ) | mk_debug_dir
 	$(CC) $(LFLAGS) -o $@ $^
 
+edit:
+	vim -S Session.vim
+
 flash:
 	openocd -f $(STLINKV2_CONFIG_PATH) -f $(MC_CONFIG_PATH) &
 	gdb-multiarch $(TARGET) -x init.gdb
