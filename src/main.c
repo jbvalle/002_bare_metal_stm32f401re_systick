@@ -11,6 +11,7 @@
 #define PIN7 7
 #define PIN8 8
 #define PIN9 9
+#define PIN16 16
 
 #define WIDTH2 2
 #define WIDTH4 4
@@ -91,13 +92,16 @@ int main(void){
     GPIOA->GPIOx_MODER |=  (1      << (PIN5 * WIDTH2));
 
     // Load Reload Register with maximum value
-    SYST->SYST_RVR |= 0xFFFFFF;
+    SYST->SYST_RVR = 2666666 - 1;
     // Disable Interrupt SYST
     SYST->SYST_CSR &= ~(1 << PIN1);
     // Set internal Clock as source and start timer
     SYST->SYST_CSR |=  ((1 << PIN2) | (1 << PIN0));
 
     for(;;){
-        GPIOA->GPIOx_ODR = ((SYST->SYST_CVR >> (20 - 5)) & (1 << PIN5));
+        // Poll Status Register of 
+        if(SYST->SYST_CSR & (1 << PIN16)){
+            GPIOA->GPIOx_ODR ^= (1 << PIN5);
+        }
     }
 }

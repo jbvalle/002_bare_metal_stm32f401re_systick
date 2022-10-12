@@ -27,12 +27,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 101 - ((39 * winheight(0) + 21) / 42)
+let s:l = 103 - ((19 * winheight(0) + 21) / 42)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 101
-normal! 050|
+keepjumps 103
+normal! 038|
 tabnext
 edit ~/Coding/033_stm32f401re_prototypes/peripherals/rcc.c
 argglobal
@@ -94,7 +94,7 @@ normal! zt
 keepjumps 1
 normal! 0
 tabnext 1
-badd +0 src/main.c
+badd +103 src/main.c
 badd +1 ~/Coding/033_stm32f401re_prototypes/peripherals/rcc.c
 badd +1 ~/Coding/033_stm32f401re_prototypes/peripherals/gpio.c
 badd +1 ~/Coding/033_stm32f401re_prototypes/peripherals/uart.c
